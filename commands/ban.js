@@ -9,9 +9,10 @@ exports.run = (bot, msg, args) => {
         throw 'Please provide a user and a reason!';
     }
 
-    const target = msg.mentions.members.first()
-        || msg.guild.members.find(member => member.id === args[0]
-            || member.user.username.toLowerCase() === (args[0] || '').toLowerCase());
+    const target = msg.mentions.users.first() || bot.users.find(
+        user => user.id === args[0]
+            || user.username.toLowerCase() === (args[0] || '').toLowerCase()
+    ) || args[0];
 
     if (!target) {
         throw 'Please mention a member or provide their username/ID to ban them!';
@@ -23,23 +24,19 @@ exports.run = (bot, msg, args) => {
     const failed = [];
 
     bot.guilds.forEach(guild => {
-        const member = guild.member(target.user);
+        const member = guild.member(target);
 
-        if (!member) {
-            return;
-        }
-
-        if (!member.bannable) {
+        if (member && !member.bannable) {
             failed.push(guild.name);
         } else {
             if (!dry) {
-                guild.ban(member, reason);
+                guild.ban(target, reason);
             }
             successful.push(guild.name);
         }
     });
 
-    let output = `${dry ? '**(DRY)** | ' : ''}${failed.length ? ':warning:' : ':white_check_mark:'} | Banned **${target.user.username}** for \`${reason}\` | `;
+    let output = `${dry ? '**(DRY)** | ' : ''}${failed.length ? ':warning:' : ':white_check_mark:'} | Banned **${target.tag || target}** for \`${reason}\` | `;
 
     if (successful.length) {
         output += `Successfully banned in \`${successful.join(', ')}\``;
