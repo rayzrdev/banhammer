@@ -4,7 +4,8 @@ const { Client } = require('discord.js');
 
 const config = (() => {
     if (!fs.existsSync('config.json')) {
-        console.error('Please copy the config-example.json file and rename it to config.json, filling out all required fields.');
+        fs.copyFileSync(path.resolve(__dirname, 'config-example.json'), 'config.json');
+        console.error('The default config.json has been copied to your current directory, please fill out all required fields.');
         process.exit(1);
     }
 

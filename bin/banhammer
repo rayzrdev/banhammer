@@ -1,0 +1,6 @@
+#!/usr/bin/env node
+
+console.log('Starting Banhammer...');
+
+// Bot will run automatically
+require('..');
