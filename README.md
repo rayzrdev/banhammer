@@ -2,22 +2,19 @@
 
 > A simple Discord bot to handle cross-server bans.
 
-## Installation
+## Installation & Usage
 
 ```bash
-git clone https://github.com/RayzrDev/banhammer.git
-cd banhammer
-npm install
+npx banhammer
 ```
 
-Now copy `config-example.json` to `config.json` and change the token and prefix accordingly.
-
-## Usage
+OR
 
 ```bash
-cd path/to/banhammer
-npm start
+npm install -g banhammer
 ```
+
+A default `config.json` will be generated in the current directory, change the token and prefix to whatever you wish.
 
 ## Join Me
 
