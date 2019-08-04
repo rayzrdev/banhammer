@@ -1,0 +1,30 @@
+{
+    "name": "banhammer",
+    "version": "1.0.0",
+    "description": "A simple Discord bot to handle cross-server bans.",
+    "main": "index.js",
+    "scripts": {
+        "start":"node .",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Rayzr522/banhammer.git"
+    },
+    "keywords": [
+        "discord.js",
+        "discord"
+    ],
+    "author": "Rayzr522 <rayzr522@gmail.com>",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/Rayzr522/banhammer/issues"
+    },
+    "homepage": "https://github.com/Rayzr522/banhammer#readme",
+    "dependencies": {
+        "discord.js": "^11.5.1"
+    },
+    "devDependencies": {
+        "eslint": "^6.1.0"
+    }
+}
