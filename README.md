@@ -5,7 +5,7 @@
 ## Installation
 
 ```bash
-git clone https://github.com/Rayzr522/banhammer.git
+git clone https://github.com/RayzrDev/banhammer.git
 cd banhammer
 npm install
 ```
