@@ -1,4 +1,10 @@
 exports.run = (bot, msg, args) => {
+    let dry = false;
+    if (args[0] === '--dry') {
+        dry = true;
+        args.shift();
+    }
+
     if (args.length < 2) {
         throw 'Please provide a user and a reason!';
     }
@@ -19,15 +25,21 @@ exports.run = (bot, msg, args) => {
     bot.guilds.forEach(guild => {
         const member = guild.member(target.user);
 
+        if (!member) {
+            return;
+        }
+
         if (!member.bannable) {
-            failed.add(guild.name);
+            failed.push(guild.name);
         } else {
-            // guild.ban(member, reason);
-            successful.add(guild.name);
+            if (!dry) {
+                guild.ban(member, reason);
+            }
+            successful.push(guild.name);
         }
     });
 
-    let output = `${failed.length ? ':warning:' : ':white_check_mark:'} | Banned **${target.user.username}** for \`${reason}\` | `;
+    let output = `${dry ? '**(DRY)** | ' : ''}${failed.length ? ':warning:' : ':white_check_mark:'} | Banned **${target.user.username}** for \`${reason}\` | `;
 
     if (successful.length) {
         output += `Successfully banned in \`${successful.join(', ')}\``;
@@ -45,6 +57,6 @@ exports.run = (bot, msg, args) => {
 
 exports.help = {
     name: 'ban',
-    usage: 'ban <user> <reason>',
+    usage: 'ban [--dry] <user> <reason>',
     description: 'Bans a user in all guilds that this bot is in.'
 };
