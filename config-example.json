@@ -1,4 +1,9 @@
 {
     "token": "Get one at https://discordapp.com/developers/applications",
-    "prefix": "b!"
+    "prefix": "b!",
+    "allowedUsers": [
+        "123456789012345678",
+        "123456789012345678",
+        "123456789012345678"
+    ]
 }
