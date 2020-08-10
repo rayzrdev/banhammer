@@ -1,5 +1,5 @@
 exports.run = (bot, msg, args) => {
-    if (!bot.config.allowedUsers.includes(msg.user.id)) {
+    if (!bot.config.allowedUsers.includes(msg.author.id)) {
       return msg.channel.send(':x: You are not an authorized user!');
     }
     let dry = false;
